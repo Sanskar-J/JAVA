@@ -20,6 +20,8 @@ public class Knapsack {
 
         int maxVal = Knapsack$01(value, wts, n, cap);
         System.out.println("Max Value is: " + maxVal);
+        int maxVal2 = Knapsack$Unbounded(value, wts, n, cap);
+        System.out.println("Unbounded Max Value is: " + maxVal2);
     }
 
     static int Knapsack$01(int value[], int wts[], int n, int cap) {
@@ -39,13 +41,21 @@ public class Knapsack {
 
     static int Knapsack$Unbounded(int value[],int wts[],int n,int cap){
         int dp[]=new int[cap+1];
+        dp[0]=0;
         for(int i=1;i<cap+1;i++){
+            int max=0;
             for(int j=0; j<n;j++){
-                if(wts[i]>=i){
-                    
+                
+                if(wts[j]<=i){
+                    int rbagc=i-wts[j];
+                    int rbagv=dp[rbagc];
+                    int tbagv=rbagv+value[j];
+                    max=Math.max(max,tbagv);
                 }
             }
+            dp[i]=max;
         }
-        return 0;
+        return dp[cap];
+      
     }
 }
