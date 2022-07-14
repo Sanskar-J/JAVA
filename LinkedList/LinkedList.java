@@ -176,6 +176,25 @@ public class LinkedList{
             left++; right--;
         }
     }
+    Node reverseLL2(){
+        if(head==null)
+           return null;
+        Node prev=null;
+        Node curr=head;
+        
+        while(curr!=null)
+        {
+            
+            Node temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            System.out.print(prev.data+"    ");
+            curr=temp;
+            System.out.print("$$" +curr.data+"  $$  ");
+            
+        }
+        return prev;
+    }
     public static void main(String a[])
     {
         LinkedList one=new LinkedList();
@@ -191,9 +210,13 @@ public class LinkedList{
         one.display();
         System.out.println("Size: "+one.size());
         System.out.println(one.getAt(0));
-        one.reverseLL();
+        // one.reverseLL();
         System.out.println(one.getAt(0));
         one.display();
         System.out.println("Size: "+one.size());
+        LinkedList check=new LinkedList();
+        check.head=one.reverseLL2();
+        check.display();
+        
     }
 }
