@@ -13,13 +13,8 @@ public class kadanesAlgorithm {
     }
     public static int kadanes(int arr[]){
         int max=arr[0],sum=arr[0];
-        for(int i=0;i<arr.length;i++){
-            if(sum>=0){
-                sum+=arr[i];
-            }
-            else{
-                sum=arr[i];
-            }
+        for(int i=1;i<arr.length;i++){
+            sum= sum>=0? sum+arr[i]: arr[i];
             max=Math.max(sum,max);
         }
         return max;

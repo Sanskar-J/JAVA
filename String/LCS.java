@@ -3,9 +3,9 @@ public class LCS {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter s1");
-        String s1=sc.next();
+        String s1=sc.nextLine();
         System.out.println("Enter s2");
-        String s2=sc.next();
+        String s2=sc.nextLine();
         int dp[][]=new int [s1.length()+1][s2.length()+1];
         String s="";
         for(int i=dp.length-2;i>=0;i--){
