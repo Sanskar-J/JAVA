@@ -1,6 +1,12 @@
+import org.w3c.dom.traversal.NodeFilter;
+
 class Node{
     int data;
     Node next;
+    Node(){}
+    Node(int data){
+        this.data=data;
+    }
 }
 public class LinkedList{
     Node head;
@@ -195,29 +201,154 @@ public class LinkedList{
         }
         return prev;
     }
+    public static Node getTailNode(Node head){
+        while(head.next!=null){
+            head=head.next;
+        }
+        return head;
+    }
+    public static void displayLL(Node head){
+        while(head!=null){
+            if(head.next==null){
+                System.out.print(head.data);
+            }
+            else{
+                System.out.print(head.data+"->");
+            }
+            head=head.next;
+        }
+        System.out.println();
+    }
     public static void main(String a[])
     {
-        LinkedList one=new LinkedList();
-        one.addLast(37);
-        one.addLast(39);
-        one.display();
-        System.out.println("Size: "+one.size());
-        one.removeFirst();
-        one.display();
-        System.out.println("Size: "+one.size());
-        one.addFirst(78);
-        one.addLast(56);
-        one.display();
-        System.out.println("Size: "+one.size());
-        System.out.println(one.getAt(0));
-        // one.reverseLL();
-        System.out.println(one.getAt(0));
-        one.display();
-        System.out.println("Size: "+one.size());
-        LinkedList check=new LinkedList();
-        check.head=one.reverseLL2();
-        check.display();
+        // LinkedList one=new LinkedList();
+        // one.addLast(37);
+        // one.addLast(39);
+        // one.display();
+        // System.out.println("Size: "+one.size());
+        // one.removeFirst();
+        // one.display();
+        // System.out.println("Size: "+one.size());
+        // one.addFirst(78);
+        // one.addLast(56);
+        // one.display();
+        // System.out.println("Size: "+one.size());
+        // System.out.println(one.getAt(0));
+        // // one.reverseLL();
+        // System.out.println(one.getAt(0));
+        // one.display();
+        // System.out.println("Size: "+one.size());
+        // LinkedList check=new LinkedList();
+        // check.head=one.reverseLL2();
+        // check.display();
+
+        Node head=new Node(5);
+        head.next=new Node(2);
+        head.next.next=new Node(1);
+        head.next.next.next=new Node(4);
+        head.next.next.next.next=new Node(3);
+        displayLL(head);
+        Node high=getTailNode(head);
+        // qSortLL(head,head,high;);
+        // Node hed[]=segregate(head, high);
+        // displayLL(hed[0]);
+        // displayLL(hed[1]);
+        // displayLL(hed[2]);
+        // displayLL(hed[3]);
+        // Node ied[]=segregate(hed[0], getTailNode(hed[0]));
+        // displayLL(ied[0]);
+        // displayLL(ied[1]);
+        // displayLL(ied[2]);
+        Node k=qSort2(head, high);
+        displayLL(k);
         
     }
+    public static void qSortLL(Node head,Node low,Node high){
+        if(low==null|| high==null ||low==high){
+            return;
+        }
+        Node pivot=high;
+        System.out.println(pivot.data+" "+low.data+" "+high.data );
+        Node p=partitionInLinkedList(head,pivot,low,high);
+        displayLL(p);
+        qSortLL(head, low, p);
+        qSortLL(head, p.next.next, high);
+    }
+    public static Node partitionInLinkedList(Node head,Node pivot,Node lo,Node hi){
+        // Node pivot=getTailNode(head);
+        Node low=lo;
+        Node high=lo;
+        while(low!=null && low!=hi.next){
+            if(low.data>pivot.data){
+                low=low.next;
+            }
+            else{
+                int t=low.data;
+                low.data=high.data;
+                high.data=t;
+                low=low.next;
+                high=high.next;
+            }
+        }
+        
+        return pivot;
+        // return head;
+    }
+    public static Node qSort2(Node head,Node pivot){
+
+        
+        Node p[]=segregate(head, pivot);
+        if(p[0]==null || p[1] ==null || p[2]==null || p[3]==null){}
+    
+        p[3].next=p[2];
+        p[2].next=p[1];
+        return p[0];
+        
+    }
+    public static Node[] segregate(Node head, Node pivot){
+        Node lHalf=new Node(-99);
+        Node rHalf=new Node(-99);
+        Node p=null;
+        Node headLeft=lHalf;
+        Node headRight=rHalf;
+        Node res[]=new Node[4];
+        if(head==pivot){
+            System.out.println("i reched here");
+            res[0]=null;
+        res[1]=null;
+        res[2]=head;
+        res[3]=head;
+        return res;
+        }
+        while(head!=null){
+            if(head.data<pivot.data){
+                lHalf.next=head;
+                lHalf=lHalf.next;
+            }
+            else if(head.data>pivot.data){
+                rHalf.next=head;
+                rHalf=rHalf.next;
+            }
+            else{
+                p=head;
+                p.next=null;
+            }
+            head=head.next;
+
+        }
+        rHalf.next=null;
+        lHalf.next=null;
+
+        // headLeft=headLeft.next;
+        // lHalf.next=headRight.next;
+        res[0]=headLeft.next;
+        res[1]=headRight.next;
+        res[2]=p;
+        res[3]=lHalf;
+        
+        return res;
+
+    }
+
 }
 
