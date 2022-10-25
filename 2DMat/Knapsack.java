@@ -22,6 +22,8 @@ public class Knapsack {
         System.out.println("Max Value is: " + maxVal);
         int maxVal2 = Knapsack$Unbounded(value, wts, n, cap);
         System.out.println("Unbounded Max Value is: " + maxVal2);
+        int maxVal3 = KnapsackRecursive(value, wts, n, cap);
+        System.out.println("01 Recursive Max Value is: " + maxVal3);
     }
 
     static int Knapsack$01(int value[], int wts[], int n, int cap) {
@@ -37,6 +39,13 @@ public class Knapsack {
             }
         }
         return dp[n][cap];
+    }
+    static int KnapsackRecursive(int value[],int wts[],int n,int cap){
+        if(cap==0 || n==0) return 0;
+        if(wts[n-1]<=cap)
+        return Math.max(value[n-1]+KnapsackRecursive(value, wts, n-1, cap-wts[n-1]),KnapsackRecursive(value, wts, n-1, cap));
+        else
+        return KnapsackRecursive(value, wts, n-1, cap);
     }
 
     static int Knapsack$Unbounded(int value[],int wts[],int n,int cap){
