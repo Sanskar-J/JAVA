@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import Needs.Pair;
 public class test
 {
   static int bSearch(int ab[],int b,int f,int l){
@@ -20,6 +21,9 @@ public class test
       //   b=sc.nextInt();
       // int x=sum(a,b);
       System.out.println(bSearch(x, 7, 0, 8));
+      Pair y=new Pair("A","B");
+      Pair z=new Pair(1,2);
+      System.out.println(y+" "+z);
 
     }
     

@@ -1,11 +1,11 @@
 public class Knapsack {
     public static void main(String[] args) {
-        int wt[]={1,3,5,8};
+        int wt[]={100,50,20,10,5,2};
         int val[]={2,3,4,24};
-        int W=12;
-        int n=4;
-        System.out.println($01Knapsack(wt, val, n, W));
-        System.out.println(unboundedKnapsack(wt, val, n, W));
+        int W=5010;
+        int n=6;
+        // System.out.println($01Knapsack(wt, val, n, W));
+        System.out.println(unboundedKnapsack(wt, wt, n, W));
     }
     
     public static int $01Knapsack(int wt[],int val[],int n,int W){

@@ -17,6 +17,7 @@ public class longestCommanSubsequence {
         System.out.println("Shortest Comman Supersequence: "+shortestCommanSupersequence("AGGTAB", "GXTXAYB", 6, 7));
         Pair IsDs=minimumInsertDeleteForXtoY("heap", "pea", 4, 3);
         System.out.println("No. of Inserts: "+IsDs.insert+" No. of Deletes: "+IsDs.delete);
+        
         System.out.println("Longest Palindromic Subsequence: "+longestPalindromicSubsequence("abdcbae",7));
         System.out.println("No of deletions for converting a string into LPS: "+ minimumNoOfDeletionForLPS("agbcba", 6));
         // System.out.println("Print SCS: "+ printSCS("AGGTAB", "GXTXAYB", 6, 7));
